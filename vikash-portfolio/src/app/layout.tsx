@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Caveat } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/ui/CustomCursor";
-import SmoothScrolling from "@/components/ui/SmoothScrolling";
+import ClientProviders from "@/components/ui/ClientProviders";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -45,8 +44,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} ${caveat.variable}`}
     >
       <body className="antialiased">
-        <CustomCursor />
-        <SmoothScrolling>{children}</SmoothScrolling>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

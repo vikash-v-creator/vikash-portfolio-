@@ -19,7 +19,6 @@ import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import WhyHireMe from "@/components/sections/WhyHireMe";
-import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
@@ -104,7 +103,6 @@ export default function Home() {
           <Testimonials />
           <Pricing />
           <WhyHireMe />
-          <FAQ />
           <Contact />
         </main>
         <Footer />

@@ -49,15 +49,17 @@ export default function CustomCursor() {
     document.addEventListener("mouseenter", onMouseEnter);
     document.addEventListener("mouseover", onMouseOver);
 
+    // Add global class to hide system cursor when CustomCursor is active
+    document.documentElement.classList.add("custom-cursor-active");
+
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseenter", onMouseEnter);
       document.removeEventListener("mouseover", onMouseOver);
+      document.documentElement.classList.remove("custom-cursor-active");
     };
   }, [cursorX, cursorY, isVisible]);
-
-  if (typeof window === "undefined") return null;
 
   return (
     <>

@@ -5,14 +5,8 @@ import { motion } from "framer-motion";
 
 export default function MagneticButton({ 
   children, 
-  className = "", 
-  onClick,
-  href
 }: { 
   children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-  href?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -29,9 +23,6 @@ export default function MagneticButton({
     setPosition({ x: 0, y: 0 });
   };
 
-  const Wrapper = href ? motion.a : motion.button;
-  const props = href ? { href } : { onClick };
-
   return (
     <motion.div
       ref={ref}
@@ -41,12 +32,7 @@ export default function MagneticButton({
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className="relative flex items-center justify-center"
     >
-      <Wrapper
-        {...props}
-        className={className}
-      >
-        {children}
-      </Wrapper>
+      {children}
     </motion.div>
   );
 }

@@ -41,7 +41,9 @@
 }
 
 /* ── Base Reset ─────────────────────────────────────────────── */
-*, *::before, *::after {
+.custom-cursor-active *,
+.custom-cursor-active *::before,
+.custom-cursor-active *::after {
   cursor: none !important;
 }
 

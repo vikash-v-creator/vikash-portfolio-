@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Stat {
+  id     Int    @id @default(autoincrement())
+  value  Int
+  suffix String
+  label  String
+}
+
+model Service {
+  id          String @id
+  icon        String
+  accentColor String
+  title       String
+  tagline     String
+  description String
+  features    String // JSON string of { icon, text, outcome }[]
+}
+
+model Project {
+  id          String @id
+  title       String
+  category    String
+  tags        String // Comma-separated
+  accentColor String
+  size        String
+  year        String
+  client      String
+  challenge   String
+  process     String
+  tools       String // Comma-separated
+  result      String
+  impact      String
+  outcome     String
+}
+
+model SkillCategory {
+  id       Int    @id @default(autoincrement())
+  category String
+  color    String
+  tools    String // JSON string of { name, icon }[]
+}
+
+model ProcessStep {
+  id          String @id
+  label       String
+  icon        String
+  color       String
+  description String
+}
+
+model Testimonial {
+  id          Int    @id @default(autoincrement())
+  name        String
+  role        String
+  avatar      String
+  avatarColor String
+  text        String
+  service     String
+  rating      Int
+}
+
+model PricingPlan {
+  id          Int     @id @default(autoincrement())
+  category    String  // "design", "video", "web"
+  name        String
+  price       String
+  popular     Boolean
+  description String
+  features    String  // JSON string of strings
+}
+
+model WhyHireMe {
+  id          Int    @id @default(autoincrement())
+  icon        String
+  color       String
+  title       String
+  stat        String
+  description String
+}
+
+model Faq {
+  id Int    @id @default(autoincrement())
+  q  String
+  a  String
+}
+
+model PhilosophyCard {
+  id          Int     @id @default(autoincrement())
+  icon        String
+  color       String
+  title       String
+  description String
+  annotation  String?
+}
+
+model DeskItem {
+  id     String @id
+  icon   String
+  label  String
+  x      Float
+  y      Float
+  info   String
+  detail String
+}
