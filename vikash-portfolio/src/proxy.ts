@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 
 const SECRET = new TextEncoder().encode(process.env.ADMIN_PASSWORD || "admin");
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // Protect only /admin routes
