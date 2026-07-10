@@ -21,6 +21,8 @@ const caveat = Caveat({
   display: "swap",
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Vikash | Graphic Designer · Video Editor · Web Developer",
   description:

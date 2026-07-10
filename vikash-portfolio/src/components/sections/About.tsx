@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DESK_ITEMS } from "@/lib/constants";
+import { DeskItem } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
-export default function About() {
+export default function About({ deskItems }: { deskItems: DeskItem[] }) {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
-  const selectedItem = DESK_ITEMS.find((i) => i.id === activeItem);
+  const selectedItem = deskItems.find((i) => i.id === activeItem);
 
   return (
     <SectionWrapper id="about" className="py-24 px-4 bg-bg">
@@ -36,7 +36,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,92,0,0.05)_0%,transparent_70%)]" />
 
                 {/* Desk items */}
-                {DESK_ITEMS.map((item, i) => (
+                {deskItems.map((item, i) => (
                   <motion.button
                     key={item.id}
                     initial={{ opacity: 0, scale: 0 }}

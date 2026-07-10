@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useScroll } from "framer-motion";
-import { PROCESS_STEPS } from "@/lib/constants";
+import { ProcessStep } from "@prisma/client";
 
-export default function Process() {
+export default function Process({ processSteps }: { processSteps: ProcessStep[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -37,7 +37,7 @@ export default function Process() {
           />
 
           <div className="space-y-8 md:space-y-0">
-            {PROCESS_STEPS.map((step, i) => {
+            {processSteps.map((step, i) => {
               const isLeft = i % 2 === 0;
               return (
                 <motion.div

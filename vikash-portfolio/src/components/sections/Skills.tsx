@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SKILLS } from "@/lib/constants";
+import { SkillCategory } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
-export default function Skills() {
+export default function Skills({ skillCategories }: { skillCategories: SkillCategory[] }) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [openTool, setOpenTool] = useState<string | null>(null);
 
-  const currentCat = SKILLS.find((c) => c.category === activeCategory);
+  const currentCat = skillCategories.find((c) => c.category === activeCategory);
 
   return (
     <SectionWrapper id="skills" className="py-24 px-4 bg-bg">
@@ -27,7 +27,7 @@ export default function Skills() {
 
         {/* Category buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {SKILLS.map((cat) => (
+          {skillCategories.map((cat) => (
             <motion.button
               key={cat.category}
               whileHover={{ scale: 1.05 }}
@@ -59,8 +59,9 @@ export default function Skills() {
               exit={{ opacity: 0 }}
               className="flex flex-wrap justify-center gap-4"
             >
-              {(activeCategory ? [currentCat!] : SKILLS).map((cat) =>
-                cat.tools.map((tool, ti) => (
+              {(activeCategory ? [currentCat!] : skillCategories).map((cat) => {
+                const tools = JSON.parse(cat.tools as string) as { name: string; icon: string }[];
+                return tools.map((tool, ti) => (
                   <motion.button
                     key={`${cat.category}-${tool.name}`}
                     initial={{ opacity: 0, scale: 0, y: 20 }}
@@ -90,8 +91,8 @@ export default function Skills() {
                     <span className="text-3xl">{tool.icon}</span>
                     <span className="text-xs font-medium text-text-muted">{tool.name}</span>
                   </motion.button>
-                ))
-              )}
+                ));
+              })}
             </motion.div>
           </AnimatePresence>
         </div>

@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PRICING } from "@/lib/constants";
+import { PricingPlan } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Check } from "lucide-react";
 
 type Tab = "design" | "video" | "web";
 
-export default function Pricing() {
+export default function Pricing({ pricingPlans }: { pricingPlans: PricingPlan[] }) {
   const [activeTab, setActiveTab] = useState<Tab>("design");
 
   const tabs: { id: Tab; label: string; emoji: string }[] = [
@@ -17,7 +17,7 @@ export default function Pricing() {
     { id: "web", label: "Web Development", emoji: "💻" },
   ];
 
-  const plans = PRICING[activeTab];
+  const plans = pricingPlans.filter((p) => p.category === activeTab);
 
   return (
     <SectionWrapper id="pricing" className="py-24 px-4 bg-surface">
@@ -90,7 +90,7 @@ export default function Pricing() {
                 </div>
 
                 <ul className="flex-1 space-y-3 mb-8">
-                  {plan.features.map((feature) => (
+                  {(JSON.parse(plan.features as string) as string[]).map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm text-text-muted">
                       <Check size={16} className={`mt-0.5 shrink-0 ${plan.popular ? "text-accent-lime" : "text-accent-orange"}`} />
                       <span>{feature}</span>

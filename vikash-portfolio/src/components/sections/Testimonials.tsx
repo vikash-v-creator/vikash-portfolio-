@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TESTIMONIALS } from "@/lib/constants";
+import { Testimonial } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { Star } from "lucide-react";
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
@@ -26,7 +26,7 @@ export default function Testimonials() {
         {/* Chat bubble testimonials */}
         <div className="space-y-6 mb-10">
           <AnimatePresence mode="wait">
-            {TESTIMONIALS.map((t, i) => (
+            {testimonials.map((t, i) => (
               <motion.div
                 key={t.id}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30, y: 10 }}

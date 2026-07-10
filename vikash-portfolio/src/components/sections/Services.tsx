@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { SERVICES } from "@/lib/constants";
+import { Service } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
-export default function Services() {
+export default function Services({ services }: { services: Service[] }) {
   const [flipped, setFlipped] = useState<string | null>(null);
 
   return (
@@ -29,7 +29,9 @@ export default function Services() {
 
         {/* Flip cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {SERVICES.map((service, i) => (
+          {services.map((service, i) => {
+            const features = JSON.parse(service.features as string);
+            return (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 40 }}
@@ -81,7 +83,7 @@ export default function Services() {
                 >
                   <h3 className="font-display font-black text-xl text-white mb-5">{service.title}</h3>
                   <ul className="flex-1 space-y-3">
-                    {service.features.map((f, fi) => (
+                    {features.map((f: any, fi: number) => (
                       <li key={fi} className="flex items-start gap-3 text-sm text-text-muted">
                         <span style={{ color: service.accentColor }} className="mt-0.5 shrink-0">{f.icon}</span>
                         <div>
@@ -103,7 +105,8 @@ export default function Services() {
                 </div>
               </motion.div>
             </motion.div>
-          ))}
+          );
+          })}
         </div>
       </div>
     </SectionWrapper>

@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PHILOSOPHY_CARDS } from "@/lib/constants";
+import { PhilosophyCard } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
-export default function CreativePhilosophy() {
+export default function CreativePhilosophy({ philosophyCards }: { philosophyCards: PhilosophyCard[] }) {
   return (
     <SectionWrapper id="philosophy" className="py-24 px-4 bg-surface">
       <div className="max-w-6xl mx-auto">
@@ -21,7 +21,7 @@ export default function CreativePhilosophy() {
 
         {/* Philosophy cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {PHILOSOPHY_CARDS.map((card, i) => (
+          {philosophyCards.map((card, i) => (
             <motion.div
               key={card.title}
               initial={{ opacity: 0, y: 30 }}

@@ -2,21 +2,21 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PORTFOLIO_PROJECTS } from "@/lib/constants";
+import { Project } from "@prisma/client";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { X } from "lucide-react";
 
 type Category = "All" | "Graphic Design" | "Video Editing" | "Web Development";
 
-export default function Portfolio() {
+export default function Portfolio({ projects }: { projects: Project[] }) {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
-  const [selectedProject, setSelectedProject] = useState<(typeof PORTFOLIO_PROJECTS)[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const categories: Category[] = ["All", "Graphic Design", "Video Editing", "Web Development"];
 
   const filtered = activeCategory === "All"
-    ? PORTFOLIO_PROJECTS
-    : PORTFOLIO_PROJECTS.filter((p) => p.category === activeCategory);
+    ? projects
+    : projects.filter((p) => p.category === activeCategory);
 
   return (
     <SectionWrapper id="portfolio" className="py-24 px-4 bg-surface">
@@ -97,7 +97,7 @@ export default function Portfolio() {
                     </h3>
                     <p className="text-text-muted text-sm">{project.client}</p>
                     <div className="flex flex-wrap gap-2 mt-3">
-                      {project.tags.map((tag) => (
+                      {project.tags.split(", ").map((tag) => (
                         <span key={tag} className="text-xs text-text-muted border border-glass-border px-2 py-0.5 rounded-full">
                           {tag}
                         </span>
@@ -167,7 +167,7 @@ export default function Portfolio() {
                 {[
                   { label: "🎯 The Challenge", content: selectedProject.challenge },
                   { label: "🔬 Process", content: selectedProject.process },
-                  { label: "🛠️ Tools Used", content: selectedProject.tools.join(" · ") },
+                  { label: "🛠️ Tools Used", content: selectedProject.tools.split(", ").join(" · ") },
                   { label: "✨ Final Result", content: selectedProject.result },
                   { label: "📊 Impact", content: selectedProject.impact },
                   { label: "🏆 Client Outcome", content: selectedProject.outcome },
