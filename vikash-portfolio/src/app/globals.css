@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────────────────
+   VIKASH PORTFOLIO — Design System
+   Hi there! You're clearly a developer. Here's a cookie: 🍪
+──────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Colors */
+  --color-bg: #0B0B0B;
+  --color-surface: #151515;
+  --color-surface-2: #1C1C1C;
+  --color-accent-orange: #FF5C00;
+  --color-accent-lime: #BFFF00;
+  --color-accent-cyan: #00F0FF;
+  --color-accent-pink: #FF2D87;
+  --color-accent-yellow: #FFE600;
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #A0A0A0;
+
+  /* Fonts */
+  --font-display: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  --font-body: var(--font-inter), 'Inter', sans-serif;
+  --font-handwriting: var(--font-caveat), 'Caveat', cursive;
+}
+
+/* ── CSS Variables for runtime use ─────────────────────────── */
+:root {
+  --bg: #0B0B0B;
+  --surface: #151515;
+  --surface-2: #1C1C1C;
+  --accent-orange: #FF5C00;
+  --accent-lime: #BFFF00;
+  --accent-cyan: #00F0FF;
+  --accent-pink: #FF2D87;
+  --accent-yellow: #FFE600;
+  --text-main: #FFFFFF;
+  --text-muted: #A0A0A0;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0B0B0B;
+  color: #FFFFFF;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+::selection {
+  background-color: #FF5C00;
+  color: #ffffff;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0B0B0B; }
+::-webkit-scrollbar-thumb { background: #1C1C1C; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #FF5C00; }
+
+/* ── Utility classes used throughout ────────────────────────── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.font-display {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+}
+
+.font-handwriting {
+  font-family: var(--font-caveat), 'Caveat', cursive;
+}
+
+/* Color utilities */
+.text-accent-orange { color: #FF5C00; }
+.text-accent-lime   { color: #BFFF00; }
+.text-accent-cyan   { color: #00F0FF; }
+.text-accent-pink   { color: #FF2D87; }
+.text-accent-yellow { color: #FFE600; }
+.text-text-muted    { color: #A0A0A0; }
+
+.bg-bg       { background-color: #0B0B0B; }
+.bg-surface  { background-color: #151515; }
+.bg-surface-2{ background-color: #1C1C1C; }
+
+.bg-accent-orange { background-color: #FF5C00; }
+.bg-accent-lime   { background-color: #BFFF00; }
+.bg-accent-cyan   { background-color: #00F0FF; }
+.bg-accent-pink   { background-color: #FF2D87; }
+.bg-accent-yellow { background-color: #FFE600; }
+
+.border-glass-border { border-color: rgba(255, 255, 255, 0.08); }
+.border-accent-orange { border-color: #FF5C00; }
+.border-accent-lime   { border-color: #BFFF00; }
+.border-accent-cyan   { border-color: #00F0FF; }
+.border-accent-pink   { border-color: #FF2D87; }
+
+/* Opacity helpers for accent colors */
+.bg-accent-orange\/10 { background-color: rgba(255, 92, 0, 0.10); }
+.bg-accent-orange\/20 { background-color: rgba(255, 92, 0, 0.20); }
+.bg-accent-lime\/5    { background-color: rgba(191, 255, 0, 0.05); }
+.bg-accent-lime\/10   { background-color: rgba(191, 255, 0, 0.10); }
+.bg-accent-cyan\/8    { background-color: rgba(0, 240, 255, 0.08); }
+.bg-accent-cyan\/10   { background-color: rgba(0, 240, 255, 0.10); }
+.bg-accent-cyan\/20   { background-color: rgba(0, 240, 255, 0.20); }
+.bg-accent-pink\/10   { background-color: rgba(255, 45, 135, 0.10); }
+.bg-accent-yellow\/10 { background-color: rgba(255, 230, 0, 0.10); }
+
+.border-accent-orange\/30 { border-color: rgba(255, 92, 0, 0.30); }
+.border-accent-orange\/40 { border-color: rgba(255, 92, 0, 0.40); }
+.border-accent-orange\/50 { border-color: rgba(255, 92, 0, 0.50); }
+.border-accent-lime\/40   { border-color: rgba(191, 255, 0, 0.40); }
+.border-accent-cyan\/30   { border-color: rgba(0, 240, 255, 0.30); }
+.border-accent-cyan\/40   { border-color: rgba(0, 240, 255, 0.40); }
+.border-accent-pink\/40   { border-color: rgba(255, 45, 135, 0.40); }
+.border-accent-yellow\/30 { border-color: rgba(255, 230, 0, 0.30); }
+
+.text-accent-orange\/40  { color: rgba(255, 92, 0, 0.40); }
+.text-text-muted\/40     { color: rgba(160, 160, 160, 0.40); }
+.text-text-muted\/50     { color: rgba(160, 160, 160, 0.50); }
+
+/* Focus rings using accent */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #FF5C00 !important;
+  box-shadow: 0 0 0 2px rgba(255, 92, 0, 0.15);
+}
+
+/* ── Lenis smooth scroll ─────────────────────────────────────── */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ── Star fill helper ────────────────────────────────────────── */
+.fill-accent-yellow { fill: #FFE600; }
